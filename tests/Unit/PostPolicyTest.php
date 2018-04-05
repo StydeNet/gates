@@ -4,7 +4,7 @@ namespace Tests\Unit;
 
 use Tests\TestCase;
 use App\{
-    Policies\PostPolicy, Post, User
+    Policies\OldPostPolicy, Post, User
 };
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -25,7 +25,7 @@ class PostPolicyTest extends TestCase
         $post = factory(Post::class)->create();
 
         // Act
-        $result = Gate::allows('post.update', $post);
+        $result = Gate::allows('update', $post);
 
         // Assert
         $this->assertTrue($result);
@@ -42,7 +42,7 @@ class PostPolicyTest extends TestCase
         ]);
 
         // Act
-        $result = Gate::forUser($user)->allows('post.update', $post);
+        $result = Gate::forUser($user)->allows('update', $post);
 
         // Assert
         $this->assertTrue($result);
@@ -57,7 +57,7 @@ class PostPolicyTest extends TestCase
         $post = factory(Post::class)->create();
 
         // Act
-        $result = Gate::forUser($user)->allows('post.update', $post);
+        $result = Gate::forUser($user)->allows('update', $post);
 
         // Assert
         $this->assertFalse($result);
@@ -70,7 +70,7 @@ class PostPolicyTest extends TestCase
         $post = factory(Post::class)->create();
 
         // Act
-        $result = Gate::allows('post.update', $post);
+        $result = Gate::allows('update', $post);
 
         // Assert
         $this->assertFalse($result);
@@ -84,7 +84,7 @@ class PostPolicyTest extends TestCase
         $post = factory(Post::class)->states('published')->create();
 
         $this->assertTrue(
-            Gate::forUser($admin)->allows('post.delete', $post)
+            Gate::forUser($admin)->allows('delete', $post)
         );
     }
 
@@ -98,7 +98,7 @@ class PostPolicyTest extends TestCase
         ]);
 
         $this->assertTrue(
-            Gate::forUser($user)->allows('post.delete', $post)
+            Gate::forUser($user)->allows('delete', $post)
         );
     }
 
@@ -112,7 +112,7 @@ class PostPolicyTest extends TestCase
         ]);
 
         $this->assertFalse(
-            Gate::forUser($user)->allows('post.delete', $post)
+            Gate::forUser($user)->allows('delete', $post)
         );
     }
 }

@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use App\{
-    Policies\PostPolicy, Post, User
+    Policies\OldPostPolicy, Post, User
 };
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -16,7 +16,8 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        'App\Model' => 'App\Policies\ModelPolicy',
+        //'App\Model' => 'App\Policies\ModelPolicy',
+        'App\Post' => 'App\Policies\PostPolicy',
     ];
 
     /**
@@ -33,10 +34,5 @@ class AuthServiceProvider extends ServiceProvider
                 return true;
             }
         });
-
-        Gate::resource('post', PostPolicy::class, [
-            'update' => 'updatePost',
-            'delete' => 'deletePost',
-        ]);
     }
 }
