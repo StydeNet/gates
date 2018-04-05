@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
-use App\{Post, User};
+use App\{
+    Policies\PostPolicy, Post, User
+};
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -32,12 +34,9 @@ class AuthServiceProvider extends ServiceProvider
             }
         });
 
-        Gate::define('update-post', function (User $user, Post $post) {
-            return $user->owns($post);
-        });
-
-        Gate::define('delete-post', function (User $user, Post $post) {
-            return $user->owns($post) && !$post->isPublished();
-        });
+        Gate::resource('post', PostPolicy::class, [
+            'update' => 'updatePost',
+            'delete' => 'deletePost',
+        ]);
     }
 }
