@@ -19,6 +19,7 @@ class CreatePostsTable extends Migration
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
 
+            $table->string('title');
             $table->string('status')->default('draft');
 
             $table->timestamps();
