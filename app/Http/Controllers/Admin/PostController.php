@@ -10,6 +10,13 @@ use Illuminate\Http\Response;
 
 class PostController extends Controller
 {
+    public function index()
+    {
+        $posts = Post::paginate();
+
+        return view('admin.posts.index', compact('posts'));
+    }
+    
     public function create()
     {
         $this->authorize('create', Post::class);
@@ -29,6 +36,8 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         $this->authorize('update', $post);
+
+        return 'Editar post';
     }
     
     public function update(Post $post, UpdatePostRequest $request)
