@@ -2,8 +2,9 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Foundation\Http\FormRequest;
+
 
 class UpdatePostRequest extends FormRequest
 {
@@ -16,6 +17,7 @@ class UpdatePostRequest extends FormRequest
     {
         return Gate::allows('update', $this->post);
     }
+
 
     /**
      * Get the validation rules that apply to the request.
