@@ -22,17 +22,17 @@ Esta es la tercera parte del curso de técnicas de autorización. Puedes encontr
 
 ### Introducción a los Gates y Policies
 
-13. [Introducción](https://styde.net/introduccion-al-uso-de-gates-y-policies-con-laravel/) - 8:50
-14. [Definir reglas de acceso](https://styde.net/definir-reglas-de-acceso-en-el-gate-de-laravel/) - 12:05
-15. [Regla de acceso global](https://styde.net/definir-una-regla-de-acceso-global-con-el-gate-de-laravel/) - 6:55
-16. [Definir Gates con clases y métodos en Laravel](https://styde.net/definir-gates-con-clases-y-metodos-en-laravel/) - 6:20
-17. [Políticas de acceso asociadas a modelos](https://styde.net/uso-de-politicas-de-acceso-asociadas-a-modelos-en-laravel/) - 5:25
+13. [Introducción](https://styde.net/introduccion-al-uso-de-gates-y-policies-con-laravel/)
+14. [Definir reglas de acceso](https://styde.net/definir-reglas-de-acceso-en-el-gate-de-laravel/)
+15. [Regla de acceso global](https://styde.net/definir-una-regla-de-acceso-global-con-el-gate-de-laravel/)
+16. [Definir Gates con clases y métodos en Laravel](https://styde.net/definir-gates-con-clases-y-metodos-en-laravel/)
+17. [Políticas de acceso asociadas a modelos](https://styde.net/uso-de-politicas-de-acceso-asociadas-a-modelos-en-laravel/)
 
 ### Autorización con Gates y Policies
 
-18. [Protección de rutas con el middleware Authorize](https://styde.net/proteccion-de-rutas-con-el-middleware-authorize/) - 14:39
-19. [Protección de acciones en controladores y form requests](https://styde.net/proteccion-de-acciones-en-controladores-y-form-requests-con-el-metodo-authorize/) - 14:30
-20. [Uso de las directivas de autorización @can @cannot y @elsecan en Blade](https://styde.net/uso-de-las-directivas-de-autorizacion-can-cannot-y-elsecan-en-blade/) - 18:50
+18. [Protección de rutas con el middleware Authorize](https://styde.net/proteccion-de-rutas-con-el-middleware-authorize/)
+19. [Protección de acciones en controladores y form requests](https://styde.net/proteccion-de-acciones-en-controladores-y-form-requests-con-el-metodo-authorize/)
+20. [Uso de las directivas de autorización @can @cannot y @elsecan en Blade](https://styde.net/uso-de-las-directivas-de-autorizacion-can-cannot-y-elsecan-en-blade/)
 
 ### En Styde.net también puedes aprender a:
 
