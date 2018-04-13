@@ -43,4 +43,4 @@ Esta es la tercera parte del curso de técnicas de autorización. Puedes encontr
 - Escribir CSS de manera eficiente con el [Curso de Sass a fondo](https://styde.net/curso-de-sass/)
 - Y [mucho más](https://styde.net/cursos/)
 
-© 2016 - 2017 [Styde.net](https://styde.net/)
+© 2018 [Styde.net](https://styde.net/)
