@@ -13,6 +13,7 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::query()
+            ->with('author')
             ->unless(auth()->user()->isAdmin(), function ($q) {
                 $q->where('user_id', auth()->id());
             })
