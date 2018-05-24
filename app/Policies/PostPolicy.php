@@ -12,9 +12,6 @@ class PostPolicy
 
     public function before(User $user, $ability)
     {
-        if ($user->isAdmin()) {
-            return true;
-        }
     }
 
     /**
@@ -27,17 +24,6 @@ class PostPolicy
     public function view(User $user, Post $post)
     {
         //
-    }
-
-    /**
-     * Determine whether the user can create posts.
-     *
-     * @param  \App\User  $user
-     * @return mixed
-     */
-    public function create(User $user)
-    {
-        return $user->role === 'author';
     }
 
     /**

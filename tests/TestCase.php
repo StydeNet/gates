@@ -2,6 +2,7 @@
 
 namespace Tests;
 
+use Bouncer;
 use App\User;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Illuminate\Foundation\Testing\TestResponse;
@@ -43,7 +44,17 @@ abstract class TestCase extends BaseTestCase
 
     protected function createAdmin()
     {
-        return factory(User::class)->states('admin')->create();
+        $user = factory(User::class)->create();
+
+        $user->allow()->everything();
+
+        // assign role 'admin' to $user
+        //Bouncer::assign('admin')->to($user);
+
+        // allow the role 'admin' to have access to everything
+        //Bouncer::allow('admin')->everything();
+
+        return $user;
     }
 
     protected function assertDatabaseEmpty($table, $connection = null)

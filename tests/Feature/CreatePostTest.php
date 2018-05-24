@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Post;
+use Silber\Bouncer\BouncerFacade;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -41,7 +42,11 @@ class CreatePostTest extends TestCase
     {
         $this->withoutExceptionHandling();
 
-        $this->actingAs($user = $this->createUser(['role' => 'author']));
+        $this->actingAs($user = $this->createUser());
+
+        $user->assign('author');
+
+        BouncerFacade::allow('author')->to('create', Post::class);
 
         $response = $this->post('admin/posts', [
             'title' => 'New post'
@@ -57,7 +62,7 @@ class CreatePostTest extends TestCase
     /** @test */
     function unathorized_users_cannot_create_posts()
     {
-        $this->actingAs($user = $this->createUser(['role' => 'subscriber']));
+        $this->actingAs($user = $this->createUser());
 
         $response = $this->post('admin/posts', [
             'title' => 'New post'

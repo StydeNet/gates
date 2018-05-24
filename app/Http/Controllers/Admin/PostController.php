@@ -14,7 +14,7 @@ class PostController extends Controller
     {
         $posts = Post::query()
             ->with('author')
-            ->unless(auth()->user()->isAdmin(), function ($q) {
+            ->unless(auth()->user()->can('view-all', Post::class), function ($q) {
                 $q->where('user_id', auth()->id());
             })
             ->paginate();

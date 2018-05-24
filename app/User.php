@@ -2,13 +2,15 @@
 
 namespace App;
 
+use Bouncer;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
+use Silber\Bouncer\Database\HasRolesAndAbilities;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, HasRolesAndAbilities;
 
     /**
      * The attributes that are mass assignable.
@@ -35,7 +37,7 @@ class User extends Authenticatable
 
     public function isAdmin()
     {
-        return $this->role === 'admin';
+        return $this->isAn('admin'); //isA('manager') isA('user') isAn('editor')
     }
 
     public function owns(Model $model, $foreignKey = 'user_id')
