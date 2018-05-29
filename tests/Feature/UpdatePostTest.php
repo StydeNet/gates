@@ -2,7 +2,6 @@
 
 namespace Tests\Feature;
 
-use Bouncer;
 use App\Post;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -10,14 +9,6 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 class UpdatePostTest extends TestCase
 {
     use RefreshDatabase;
-
-    public function setUp()
-    {
-        parent::setUp();
-
-        Bouncer::allow('editor')->to('update', Post::class);
-        Bouncer::allow('author')->toOwn(Post::class);
-    }
 
     /** @test */
     function admins_can_update_posts()
