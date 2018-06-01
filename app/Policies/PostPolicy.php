@@ -10,36 +10,19 @@ class PostPolicy
 {
     use HandlesAuthorization;
 
-    public function before(User $user, $ability)
-    {
-    }
-
     /**
-     * Determine whether the user can view the post.
+     * Determine whether the user can delete the post.
      *
      * @param  \App\User  $user
      * @param  \App\Post  $post
      * @return mixed
      */
-    public function view(User $user, Post $post)
+    public function delete(User $user, Post $post)
     {
-        //
-    }
+        if ($user->can('delete-published', $post)) {
+            return true;
+        }
 
-//    /**
-//     * Determine whether the user can delete the post.
-//     *
-//     * @param  \App\User  $user
-//     * @param  \App\Post  $post
-//     * @return mixed
-//     */
-//    public function delete(User $user, Post $post)
-//    {
-//        return $user->owns($post) && !$post->isPublished();
-//    }
-
-    public function deleteAll()
-    {
-        return false;
+        return $post->isDraft() && $user->can('delete-draft', $post);
     }
 }

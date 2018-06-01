@@ -22,8 +22,8 @@ class BouncerSeeder extends Seeder
 
         Bouncer::allow('author')->to('create', Post::class);
 
-        Bouncer::allow('editor')->to('update', Post::class);
-        Bouncer::allow('author')->toOwn(Post::class)->to('update');
+        Bouncer::allow('editor')->to(['update', 'delete-draft'], Post::class);
+        Bouncer::allow('author')->toOwn(Post::class)->to(['update', 'delete-draft']);
     }
 
     protected function createRoles()

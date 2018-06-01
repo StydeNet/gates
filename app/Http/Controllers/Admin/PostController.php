@@ -53,4 +53,13 @@ class PostController extends Controller
 
         return 'Post updated!';
     }
+
+    public function delete(Post $post)
+    {
+        $this->authorize('delete', $post);
+
+        $post->delete();
+
+        return redirect('admin/posts');
+    }
 }
