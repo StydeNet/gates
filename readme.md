@@ -33,6 +33,17 @@ Esta es la tercera parte del curso de técnicas de autorización. Puedes encontr
 18. [Protección de rutas con el middleware Authorize](https://styde.net/proteccion-de-rutas-con-el-middleware-authorize/)
 19. [Protección de acciones en controladores y form requests](https://styde.net/proteccion-de-acciones-en-controladores-y-form-requests-con-el-metodo-authorize/)
 20. [Uso de las directivas de autorización @can @cannot y @elsecan en Blade](https://styde.net/uso-de-las-directivas-de-autorizacion-can-cannot-y-elsecan-en-blade/)
+21. [Filtrar consultas dependiendo del rol del usuario conectado](https://styde.net/filtrar-consultas-a-nivel-de-base-de-datos-dependiendo-del-rol-del-usuario-conectado/)
+22. [Agregar filtros a los policies de Laravel](https://styde.net/agregar-filtros-a-los-policies-de-laravel/)
+23. [Métodos personalizados para pruebas a la base de datos](https://styde.net/metodos-personalizados-para-pruebas-automatizadas-a-la-base-de-datos-con-laravel/)
+24. [Crear métodos personalizados de prueba usando macros](https://styde.net/crear-metodos-personalizados-de-prueba-usando-macros-en-laravel/)
+
+### Permisos y roles dinámicos
+
+25. [Roles y permisos dinámicos en Laravel con Bouncer](https://styde.net/roles-y-permisos-dinamicos-en-laravel-con-bouncer/)
+26. [Propiedad de modelos con Bouncer en Laravel](https://styde.net/propiedad-de-modelos-con-bouncer-en-laravel/)
+27. [Definición de roles y habilidades mediante seeders](https://styde.net/definicion-de-roles-y-habilidades-mediante-seeders-con-laravel-y-bouncer/)
+28. [Políticas de acceso avanzadas con Laravel y Bouncer](https://styde.net/politicas-de-acceso-avanzadas-con-laravel-y-bouncer/)
 
 ### En Styde.net también puedes aprender a:
 
