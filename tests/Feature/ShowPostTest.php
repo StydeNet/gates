@@ -16,26 +16,21 @@ class ShowPostTest extends TestCase
     {
         parent::setUp();
 
+        $this->withoutExceptionHandling();
+
         $this->post = factory(Post::class)->create([
             'teaser' => 'The teaser',
             'content' => 'The content of the post',
         ]);
     }
-
+    
     /** @test */
-    function anonymous_users_can_only_see_the_content_of_the_post_after_accepting_the_terms()
+    function anonymous_users_cannot_see_the_content_without_accepting_the_terms()
     {
-        $this->withoutExceptionHandling();
-        //$this->withoutMiddleware(EncryptCookies::class);
-
         $this->get($this->postUrl())
             ->assertStatus(200)
             ->assertSee('The teaser')
             ->assertDontSee('The content of the post');
-
-        $this->call('GET', $this->postUrl(), [], ['accept_terms' => 1])
-            ->assertStatus(200)
-            ->assertSee('The content of the post');
     }
 
     /** @test */
@@ -47,6 +42,16 @@ class ShowPostTest extends TestCase
 
         $response->assertStatus(200)
             ->assertSee('The teaser')
+            ->assertSee('The content of the post');
+    }
+
+    /** @test */
+    function anonymous_users_can_see_the_content_if_they_have_accepted_the_terms()
+    {
+        //$this->withoutMiddleware(EncryptCookies::class);
+
+        $this->call('GET', $this->postUrl(), [], ['accept_terms' => 1])
+            ->assertStatus(200)
             ->assertSee('The content of the post');
     }
 
