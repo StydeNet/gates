@@ -57,7 +57,7 @@ class ShowPostTest extends TestCase
 
     protected function withTermsAccepted()
     {
-        return ['accept_terms' => encrypt(1)];
+        return ['accept_terms' => encrypt(1, false)];
     }
 
     /**
@@ -85,7 +85,9 @@ class RequestWithCookies
 
     protected function encryptCookies(array $cookies)
     {
-        return collect($cookies)->map('encrypt')->all();
+        return collect($cookies)->map(function ($value) {
+            return encrypt($value, false);
+        })->all();
     }
 
     public function __call($method, $parameters)
