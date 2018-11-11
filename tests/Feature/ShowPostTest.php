@@ -51,7 +51,7 @@ class ShowPostTest extends TestCase
     {
         //$this->withoutMiddleware(EncryptCookies::class);
 
-        $this->call('GET', $this->postUrl(), [], ['accept_terms' => 1])
+        $this->call('GET', $this->postUrl(), [], ['accept_terms' => '1'])
             ->assertStatus(200)
             ->assertSee('The content of the post');
     }
@@ -63,7 +63,7 @@ class ShowPostTest extends TestCase
 
     protected function withTermsAccepted()
     {
-        return ['accept_terms' => encrypt(1, false)];
+        return ['accept_terms' => encrypt('1', false)];
     }
 
     /**
