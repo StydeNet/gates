@@ -91,9 +91,13 @@ class RequestWithCookies
 
     protected function encryptCookies(array $cookies)
     {
-        return collect($cookies)->map(function ($value) {
+        return array_map(function ($value) {
             return encrypt($value, false);
-        })->all();
+        }, $cookies);
+
+//        return collect($cookies)->map(function ($value) {
+//            return encrypt($value, false);
+//        })->all();
     }
 
     public function __call($method, $parameters)
