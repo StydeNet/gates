@@ -23,18 +23,9 @@ class ShowPostTest extends TestCase
             'content' => 'The content of the post',
         ]);
     }
-    
-    /** @test */
-    function anonymous_users_cannot_see_the_content_without_accepting_the_terms()
-    {
-        $this->get($this->postUrl())
-            ->assertStatus(200)
-            ->assertSee('The teaser')
-            ->assertDontSee('The content of the post');
-    }
 
     /** @test */
-    function logged_in_users_can_always_see_the_content_of_the_posts()
+    function logged_in_users_can_see_the_content_of_the_posts()
     {
         $this->actingAs($this->createUser());
 
@@ -43,6 +34,15 @@ class ShowPostTest extends TestCase
         $response->assertStatus(200)
             ->assertSee('The teaser')
             ->assertSee('The content of the post');
+    }
+    
+    /** @test */
+    function anonymous_users_cannot_see_the_content_without_accepting_the_terms()
+    {
+        $this->get($this->postUrl())
+            ->assertStatus(200)
+            ->assertSee('The teaser')
+            ->assertDontSee('The content of the post');
     }
 
     /** @test */
