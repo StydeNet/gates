@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\{
     Policies\OldPostPolicy, Post, User
 };
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -28,5 +29,9 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
+
+        Gate::define('see-content', function (?User $user) {
+            return $user || Cookie::get('accept_terms') === '1';
+        });
     }
 }

@@ -20,6 +20,8 @@ class CreatePostsTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
 
             $table->string('title');
+            $table->mediumText('teaser')->nullable();
+            $table->mediumText('content')->nullable();
             $table->string('status')->default('draft');
 
             $table->timestamps();

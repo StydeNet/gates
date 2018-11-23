@@ -32,7 +32,7 @@ class CreatePostTest extends TestCase
     {
         $this->withoutExceptionHandling();
 
-        $this->actingAs($user = $this->createUser());
+        $this->actingAs($user = $this->aUser());
 
         $user->assign('author');
 
@@ -50,7 +50,7 @@ class CreatePostTest extends TestCase
     /** @test */
     function unathorized_users_cannot_create_posts()
     {
-        $this->actingAs($user = $this->createUser());
+        $this->actingAs($user = $this->aUser());
 
         $response = $this->post('admin/posts', [
             'title' => 'New post'

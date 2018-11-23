@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('posts/{post}', 'PostController@show');
+
+Route::post('accept-terms', 'AcceptTermsController@accept');
+
 Route::middleware('auth')->namespace('Admin\\')->prefix('admin/')->group(function () {
     Route::get('posts', 'PostController@index');
 

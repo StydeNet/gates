@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Http\Middleware\EncryptCookies;
 use App\Post;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -27,11 +28,11 @@ class ShowPostTest extends TestCase
     /** @test */
     function logged_in_users_can_see_the_content_of_the_posts()
     {
-        $this->actingAs($this->createUser());
+        $this->actingAs($this->aUser());
 
-        $response = $this->get($this->postUrl());
+        $response = $this->get($this->postPage());
 
-        $response->assertStatus(200)
+        $response->assertOk()
             ->assertViewIs('posts.show')
             ->assertSee('The teaser')
             ->assertSee('The content of the post');
@@ -40,7 +41,7 @@ class ShowPostTest extends TestCase
     /** @test */
     function anonymous_users_cannot_see_the_content_without_accepting_the_terms()
     {
-        $this->get($this->postUrl())
+        $this->get($this->postPage())
             ->assertStatus(200)
             ->assertSee('The teaser')
             ->assertDontSee('The content of the post');
@@ -49,14 +50,13 @@ class ShowPostTest extends TestCase
     /** @test */
     function anonymous_users_can_see_the_content_if_they_have_accepted_the_terms()
     {
-        //$this->withoutMiddleware(EncryptCookies::class);
-
-        $this->call('GET', $this->postUrl(), [], ['accept_terms' => '1'])
-            ->assertStatus(200)
+        $this->withCookies(['accept_terms' => '1'])
+            ->get($this->postPage())
+            ->assertOk()
             ->assertSee('The content of the post');
     }
 
-    protected function postUrl()
+    protected function postPage()
     {
         return "posts/{$this->post->id}";
     }

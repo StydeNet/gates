@@ -34,7 +34,7 @@ class DeletePostTest extends TestCase
     /** @test */
     function editors_can_delete_drafts()
     {
-        $editor = $this->createUser();
+        $editor = $this->aUser();
 
         $editor->assign('editor');
 
@@ -56,7 +56,7 @@ class DeletePostTest extends TestCase
     /** @test */
     function editors_cannot_delete_published_posts()
     {
-        $editor = $this->createUser();
+        $editor = $this->aUser();
 
         $editor->assign('editor');
 
@@ -77,7 +77,7 @@ class DeletePostTest extends TestCase
     /** @test */
     function authors_can_delete_drafts_they_own()
     {
-        $author = $this->createUser();
+        $author = $this->aUser();
 
         $author->assign('author');
 
@@ -104,7 +104,7 @@ class DeletePostTest extends TestCase
             'status' => 'draft'
         ]);
 
-        $author = $this->createUser();
+        $author = $this->aUser();
 
         $author->assign('author');
 
@@ -121,7 +121,7 @@ class DeletePostTest extends TestCase
     /** @test */
     function authors_cannot_delete_published_posts()
     {
-        $author = $this->createUser();
+        $author = $this->aUser();
 
         $author->assign('author');
 
@@ -143,7 +143,7 @@ class DeletePostTest extends TestCase
     /** @test */
     function unauthorized_users_cannot_delete_posts()
     {
-        $user = $this->createUser();
+        $user = $this->aUser();
 
         $post = factory(Post::class)->create([
             'user_id' => $user->id,

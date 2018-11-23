@@ -38,7 +38,7 @@ class ListPostsTest extends TestCase
     {
         $this->withoutExceptionHandling();
 
-        $user = $this->createUser();
+        $user = $this->aUser();
 
         $post1ByCurrentUser = factory(Post::class)->create(['user_id' => $user->id]);
         $post2ByAnotherUser = factory(Post::class)->create();
