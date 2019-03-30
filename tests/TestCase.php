@@ -10,7 +10,7 @@ abstract class TestCase extends BaseTestCase
 {
     use CreatesApplication, DetectRepeatedQueries;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
@@ -31,7 +31,7 @@ abstract class TestCase extends BaseTestCase
         $this->enableQueryLog();
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         $this->flushQueryLog();
 

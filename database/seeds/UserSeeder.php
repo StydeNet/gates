@@ -13,11 +13,7 @@ class UserSeeder extends Seeder
     {
         $this->createAdmin();
 
-        $user = factory(\App\User::class)->create([
-            'email' => 'duilio@styde.net',
-        ]);
-
-        $user->assign('author');
+        $this->createAuthor();
     }
 
     protected function createAdmin()
@@ -28,5 +24,15 @@ class UserSeeder extends Seeder
         ]);
 
         $admin->assign('admin');
+    }
+
+    protected function createAuthor()
+    {
+        $user = factory(\App\User::class)->create([
+            'name' => 'Duilio Palacios',
+            'email' => 'duilio@styde.net',
+        ]);
+
+        $user->assign('author');
     }
 }
