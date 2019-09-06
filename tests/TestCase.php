@@ -5,6 +5,7 @@ namespace Tests;
 use App\User;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Illuminate\Foundation\Testing\TestResponse;
+use Illuminate\Support\Str;
 
 abstract class TestCase extends BaseTestCase
 {
@@ -56,7 +57,7 @@ abstract class TestCase extends BaseTestCase
         $total = $this->getConnection($connection)->table($table)->count();
 
         $this->assertSame(0, $total, sprintf(
-            "Failed asserting the table [%s] is empty. %s %s found.", $table, $total, str_plural('row', $total)
+            "Failed asserting the table [%s] is empty. %s %s found.", $table, $total, Str::plural('row', $total)
         ));
     }
 }
