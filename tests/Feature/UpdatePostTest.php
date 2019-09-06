@@ -21,6 +21,10 @@ class UpdatePostTest extends TestCase
 
         $this->actingAs($admin);
 
+        $this->get("admin/posts/{$post->id}/edit")
+            ->assertSuccessful()
+            ->assertSee('Editar post');
+
         $response = $this->put("admin/posts/{$post->id}", [
             'title' => 'Updated post title',
         ]);
@@ -46,6 +50,10 @@ class UpdatePostTest extends TestCase
         $post = factory(Post::class)->create();
 
         $this->actingAs($user);
+
+        $this->get("admin/posts/{$post->id}/edit")
+            ->assertSuccessful()
+            ->assertSee('Editar post');
 
         $response = $this->put("admin/posts/{$post->id}", [
             'title' => 'Updated post title',
@@ -75,6 +83,10 @@ class UpdatePostTest extends TestCase
 
         $this->actingAs($user);
 
+        $this->get("admin/posts/{$post->id}/edit")
+            ->assertSuccessful()
+            ->assertSee('Editar post');
+
         $response = $this->put("admin/posts/{$post->id}", [
             'title' => 'Updated post title',
         ]);
@@ -99,6 +111,9 @@ class UpdatePostTest extends TestCase
 
         $this->actingAs($user);
 
+        $this->get("admin/posts/{$post->id}/edit")
+            ->assertStatus(403);
+
         $response = $this->put("admin/posts/{$post->id}", [
             'title' => 'Updated post title',
         ]);
@@ -120,6 +135,9 @@ class UpdatePostTest extends TestCase
 
         $this->actingAs($user);
 
+        $this->get("admin/posts/{$post->id}/edit")
+            ->assertStatus(403);
+
         $response = $this->put("admin/posts/{$post->id}", [
             'title' => 'Updated post title',
         ]);
@@ -136,6 +154,9 @@ class UpdatePostTest extends TestCase
     function guests_cannot_update_posts()
     {
         $post = factory(Post::class)->create();
+
+        $this->get("admin/posts/{$post->id}/edit")
+            ->assertRedirect('login');
 
         $response = $this->put("admin/posts/{$post->id}", [
             'title' => 'Updated post title',
