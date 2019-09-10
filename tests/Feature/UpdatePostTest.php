@@ -136,7 +136,8 @@ class UpdatePostTest extends TestCase
         $this->actingAs($user);
 
         $this->get("admin/posts/{$post->id}/edit")
-            ->assertStatus(403);
+            ->assertStatus(403)
+            ->assertSee('No dispones de permisos para editar ningún post');
 
         $response = $this->put("admin/posts/{$post->id}", [
             'title' => 'Updated post title',
