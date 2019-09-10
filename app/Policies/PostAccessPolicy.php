@@ -10,6 +10,11 @@ class PostAccessPolicy
 {
     use HandlesAuthorization;
 
+    public function viewAny()
+    {
+        return true;
+    }
+
     /**
      * Determine whether the user can delete the post.
      *

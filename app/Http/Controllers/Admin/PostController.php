@@ -10,6 +10,11 @@ use Illuminate\Http\Response;
 
 class PostController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Post::class, 'post');
+    }
+
     public function index()
     {
         $posts = Post::query()
@@ -21,16 +26,14 @@ class PostController extends Controller
 
         return view('admin.posts.index', compact('posts'));
     }
-    
+
     public function create()
     {
-        $this->authorize('create', Post::class);
+        return 'New post';
     }
-    
+
     public function store(Request $request)
     {
-        $this->authorize('create', Post::class);
-
         $request->user()->posts()->create([
             'title' => $request->title,
         ]);
@@ -40,11 +43,9 @@ class PostController extends Controller
 
     public function edit(Post $post)
     {
-        $this->authorize('update', $post);
-
-        return 'Editar post';
+        return 'Edit post';
     }
-    
+
     public function update(Post $post, UpdatePostRequest $request)
     {
         $post->update([
@@ -54,10 +55,8 @@ class PostController extends Controller
         return 'Post updated!';
     }
 
-    public function delete(Post $post)
+    public function destroy(Post $post)
     {
-        $this->authorize('delete', $post);
-
         $post->delete();
 
         return redirect('admin/posts');

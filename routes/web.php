@@ -20,15 +20,7 @@ Route::get('posts/{post}', 'PostController@show');
 Route::post('accept-terms', 'AcceptTermsController@accept');
 
 Route::middleware('auth')->namespace('Admin\\')->prefix('admin/')->group(function () {
-    Route::get('posts', 'PostController@index');
-
-    Route::post('posts', 'PostController@store');
-
-    Route::get('posts/{post}/edit', 'PostController@edit')->name('posts.edit');
-
-    Route::put('posts/{post}', 'PostController@update');
-
-    Route::delete('posts/{post}', 'PostController@delete');
+    Route::resource('posts', 'PostController');
 });
 
 Auth::routes();
